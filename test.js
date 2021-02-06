@@ -8,7 +8,6 @@ const uri = "mongodb+srv://kazukun:Kazukun23@cluster0.awxst.mongodb.net/Apiportf
 const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 // parse application/json
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -43,8 +42,3 @@ app.get("/api/products", (req, res) => {
 
       });
   });
-
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-  });
-  
