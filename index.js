@@ -27,6 +27,34 @@ useNewUrlParser: true,
 console.log(`DB Connection Error: ${err.message}`);
 });
 */
+
+  // Listen on port 5000
+  app.listen(port, () => {
+    console.log(`Server is booming on port 5000
+  Visit http://localhost:5000`);
+  });
+  
+  app.get('/',(req,res) => {
+      res.send("This is a sample express app")
+      MongoClient.connect(uri, function(err, db) {
+        console.log('DB Connected!')
+          if (err) throw err;
+          var dbo = db.db("Apiportfolio");
+          //Find all documents in the customers collection:
+          dbo.collection("posts").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(err)
+  
+            db.close();
+            res.send(result);
+          });
+  
+  
+        });
+  })
+  
+  
+  
 app.get("/api/products", (req, res) => {
   
     MongoClient.connect(uri, function(err, db) {
@@ -45,15 +73,3 @@ app.get("/api/products", (req, res) => {
 
       });
   });
-
-  // Listen on port 5000
-app.listen(port, () => {
-  console.log(`Server is booming on port 5000
-Visit http://localhost:5000`);
-});
-
-app.get('/',(req,res) => {
-    res.send("This is a sample express app")
-})
-
-
