@@ -28,13 +28,15 @@ console.log(`DB Connection Error: ${err.message}`);
 });
 */
 app.get("/api/products", (req, res) => {
+  
     MongoClient.connect(uri, function(err, db) {
+      console.log('DB Connected!')
         if (err) throw err;
         var dbo = db.db("Apiportfolio");
         //Find all documents in the customers collection:
         dbo.collection("posts").find({}).toArray(function(err, result) {
           if (err) throw err;
-        
+          console.log(err)
 
           db.close();
           res.send(result);
