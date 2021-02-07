@@ -35,7 +35,6 @@ console.log(`DB Connection Error: ${err.message}`);
   });
   
   app.get('/',(req,res) => {
-      res.send("This is a sample express app")
       MongoClient.connect(uri, function(err, db) {
         console.log('DB Connected!')
           if (err) throw err;
@@ -51,6 +50,8 @@ console.log(`DB Connection Error: ${err.message}`);
   
   
         });
+        //res.send("This is a sample express app")
+
   })
   
   
